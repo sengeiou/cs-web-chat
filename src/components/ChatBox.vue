@@ -90,7 +90,7 @@ export default {
     height: 380px;
     margin: 12px 0 20px 20px;
     padding-right: 15px;
-    overflow: scroll;
+    overflow-y: scroll;
     .message-content {
       display: block;
       margin: 20px;
