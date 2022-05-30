@@ -5,15 +5,15 @@
     <div id="chat-box-body" class="chat-box-body">
       <div v-for="(msg,idx) in messages" :key="idx">
         <div style="margin-bottom: 16px;">
-          <SystemMessage v-if="msg.messageType === 'System'" :content="msg.content" />
+          <SystemMessage v-if="msg.type === 1" :content="msg.content" />
           <MemberMessage
-              v-else-if="msg.messageType === 'Member'"
+              v-else-if="msg.type === 2"
               :content="msg.content"
               :timestamp="msg.timestamp"
           />
           <StaffMessage
               v-else
-              :name="msg.senderName"
+              :name="msg.sender_name"
               :content="msg.content"
               :timestamp="msg.timestamp"
           />

@@ -7,7 +7,7 @@ let socket = null;
 
 export const connectSocket = () => {
 	const sid = getSID()
-	socket = new WebSocket(wsUrl+"?type=2&sid="+sid);
+	socket = new WebSocket(wsUrl+"?type=member&sid="+sid);
 	const store = useStore();
 	socket.onopen = function() {
 		console.log("websocket connected!!");

@@ -13,11 +13,11 @@ export const mutations = {
 		state.messages = state.messages.concat(messages)
 	},
 	APPEND_MESSAGE(state, message) {
-		if(message.contentType === "Score") {
+		if(message.content_type === 4) {
 			state.showScoreDialog = true
-		} else if (message.contentType === "NoStaff") {
+		} else if (message.content_type === 7) {
 			state.noStaff = true
-		} else if (message.contentType === "RoomAccepted"){
+		} else if (message.content_type === 9){
 			state.noStaff = false
 		} else {
 			state.messages.push(message)
