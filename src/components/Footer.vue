@@ -4,6 +4,19 @@
       <div id="input-area" class="input-area" @compositionstart="isComposing = true; this.haveChanged = true;" @compositionend="isComposing = false" @keyup.enter.exact="onEnter">
         <textarea v-model="message.content" placeholder="請輸入訊息..."></textarea>
       </div>
+      <el-upload
+          class="upload-btn"
+          :action="url()"
+          :headers="{'X-Token': sid()}"
+          :show-file-list="false"
+          accept="image/jpg,image/jpeg,image/png"
+          :on-success="successCB"
+      >
+        <el-tooltip placement="top">
+          <template #content>上傳圖片</template>
+          <PictureFilled style="width: 25px; height: 25px;color:#888;margin-top: 7px" />
+        </el-tooltip>
+      </el-upload>
       <div class="send-btn" @click="sendMessage">
         <promotion style="width: 25px; height: 25px; color: white;margin-top: 7px" />
       </div>
@@ -12,12 +25,14 @@
 </template>
 
 <script>
-import {Promotion} from '@element-plus/icons-vue'
+import {PictureFilled, Promotion} from '@element-plus/icons-vue'
 import { sendSocketMessage } from "@/utils/ws";
+import {ElTooltip, ElUpload} from "element-plus";
+import {getSID} from "@/utils/storage";
 
 export default {
   name: "ChatBoxFooter",
-  components: {Promotion},
+  components: {Promotion, ElUpload, PictureFilled, ElTooltip},
   data() {
     return {
       isComposing: false,
@@ -47,7 +62,19 @@ export default {
         this.haveChanged = false
         this.isOK = true
       }
-    }
+    },
+    url() {
+      return process.env.VUE_APP_BASE_URL + "/upload/member"
+    },
+    sid() {
+      return getSID()
+    },
+    successCB(response) {
+      sendSocketMessage({
+        content_type: 3,
+        content: response.data
+      })
+    },
   }
 }
 </script>
@@ -81,6 +108,14 @@ export default {
           outline: none !important;
         }
       }
+    }
+    .upload-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 70px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
     }
     .send-btn {
       position: absolute;

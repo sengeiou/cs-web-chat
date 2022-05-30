@@ -8,6 +8,7 @@
           <SystemMessage v-if="msg.type === 1" :content="msg.content" />
           <MemberMessage
               v-else-if="msg.type === 2"
+              :content-type="msg.content_type"
               :content="msg.content"
               :timestamp="msg.timestamp"
           />

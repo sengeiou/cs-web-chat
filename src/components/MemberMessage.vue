@@ -1,7 +1,15 @@
 <template>
   <div class="member-message-container">
-    <div class="member-time">{{getTime(timestamp)}}</div>
-    <div class="content-text">{{content}}</div>
+    <template v-if="contentType === 2">
+      <div class="member-time">{{getTime(timestamp)}}</div>
+      <div class="content-text">{{content}}</div>
+    </template>
+    <template v-if="contentType === 3">
+      <div class="member-time">{{getTime(timestamp)}}</div>
+      <div class="content-text">
+        <img :src="content" alt="">
+      </div>
+    </template>
   </div>
 </template>
 
@@ -11,6 +19,7 @@ import moment from "moment";
 export default {
   name: "MemberMessage",
   props: {
+    contentType: Number,
     content: String,
     timestamp: Number
   },
@@ -53,6 +62,12 @@ export default {
       top: 9px;
       border-top: 8px solid transparent;
       border-bottom: 8px solid transparent;
+    }
+    img {
+      margin-top: 3px;
+      width: 300px;
+      border-radius: 10px;
+      height: auto;
     }
   }
 }
