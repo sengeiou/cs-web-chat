@@ -5,23 +5,43 @@
         <img src="https://picsum.photos/100/100?random=12" />
       </div>
     </div>
-    <div class="content-section">
-      <div class="content-desc">
-        <span class="staff-name">{{name}}</span>
-        <span class="staff-time">{{getTime(timestamp)}}</span>
+    <template v-if="contentType === 2">
+      <div class="content-section">
+        <div class="content-desc">
+          <span class="staff-name">{{name}}</span>
+          <span class="staff-time">{{getTime(timestamp)}}</span>
+        </div>
+        <div class="content-text">{{content}}</div>
       </div>
-      <div class="content-text">{{content}}</div>
-    </div>
+    </template>
+    <template v-if="contentType === 3">
+      <div class="content-section">
+        <div class="content-desc">
+          <span class="staff-name">{{name}}</span>
+          <span class="staff-time">{{getTime(timestamp)}}</span>
+        </div>
+        <div class="content-text">
+          <el-image
+              style="width: 100%;"
+              :src="content"
+              :preview-src-list="[content]">
+          </el-image>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 import moment from 'moment';
+import {ElImage} from "element-plus";
 
 export default {
   name: "StaffMessage",
+  components: {ElImage},
   props: {
     name: String,
+    contentType: Number,
     content: String,
     timestamp: Number
   },
@@ -83,6 +103,11 @@ export default {
         top: 9px;
         border-top: 8px solid transparent;
         border-bottom: 8px solid transparent;
+      }
+      .el-image {
+        max-width: 270px;
+        margin-top: 3px;
+        border-radius: 10px;
       }
     }
   }

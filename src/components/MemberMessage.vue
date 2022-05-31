@@ -7,7 +7,11 @@
     <template v-if="contentType === 3">
       <div class="member-time">{{getTime(timestamp)}}</div>
       <div class="content-text">
-        <img :src="content" alt="">
+        <el-image
+          style="width: 100%;"
+          :src="content"
+          :preview-src-list="[content]">
+        </el-image>
       </div>
     </template>
   </div>
@@ -15,9 +19,11 @@
 
 <script>
 import moment from "moment";
+import {ElImage} from "element-plus";
 
 export default {
   name: "MemberMessage",
+  components: {ElImage},
   props: {
     contentType: Number,
     content: String,
@@ -63,11 +69,10 @@ export default {
       border-top: 8px solid transparent;
       border-bottom: 8px solid transparent;
     }
-    img {
+    .el-image {
+      max-width: 250px;
       margin-top: 3px;
-      width: 300px;
       border-radius: 10px;
-      height: auto;
     }
   }
 }
