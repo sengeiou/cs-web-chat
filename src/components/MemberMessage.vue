@@ -1,10 +1,10 @@
 <template>
   <div class="member-message-container">
-    <template v-if="contentType === 2">
+    <template v-if="contentType === 1">
       <div class="member-time">{{getTime(timestamp)}}</div>
       <div class="content-text">{{content}}</div>
     </template>
-    <template v-if="contentType === 3">
+    <template v-if="contentType === 2">
       <div class="member-time">{{getTime(timestamp)}}</div>
       <div class="content-text">
         <el-image

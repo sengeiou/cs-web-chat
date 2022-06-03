@@ -13,14 +13,18 @@ export const mutations = {
 		state.messages = state.messages.concat(messages)
 	},
 	APPEND_MESSAGE(state, message) {
-		if(message.content_type === 4) {
-			state.showScoreDialog = true
-		} else if (message.content_type === 7) {
-			state.noStaff = true
-		} else if (message.content_type === 9){
-			state.noStaff = false
-		} else {
-			state.messages.push(message)
+		switch (message.op_type) {
+			case 3:
+				state.showScoreDialog = true
+				break
+			case 6:
+				state.noStaff = true
+				break
+			case 8:
+				state.noStaff = false
+				break
+			default:
+				state.messages.push(message)
 		}
 	},
 	SET_ROOM_ID(state, roomId) {

@@ -1,6 +1,7 @@
 <template>
 <div class="system-message-container">
-  <div class="system-message">{{content}}</div>
+  <div v-if="opType === 7" class="system-message">諮詢已結束</div>
+  <div v-else class="system-message">{{content}}</div>
 </div>
 </template>
 
@@ -8,6 +9,7 @@
 export default {
   name: "SystemMessage",
   props: {
+    opType: Number,
     content: String
   }
 }

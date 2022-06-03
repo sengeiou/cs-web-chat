@@ -61,7 +61,8 @@ export default {
         })
         this.$store.commit('ws/SET_SHOW_SCORE_DIALOG', false)
         sendSocketMessage({
-          content_type: 4,
+          op_type: 4,
+          content_type: 1,
           content: ""
         })
       }

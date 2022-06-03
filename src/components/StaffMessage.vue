@@ -5,7 +5,7 @@
         <img src="https://picsum.photos/100/100?random=12" />
       </div>
     </div>
-    <template v-if="contentType === 2">
+    <template v-if="contentType === 1">
       <div class="content-section">
         <div class="content-desc">
           <span class="staff-name">{{name}}</span>
@@ -14,7 +14,7 @@
         <div class="content-text">{{content}}</div>
       </div>
     </template>
-    <template v-if="contentType === 3">
+    <template v-if="contentType === 2">
       <div class="content-section">
         <div class="content-desc">
           <span class="staff-name">{{name}}</span>

@@ -39,8 +39,9 @@ export default {
       isOK: true,
       haveChanged: false,
       message: {
-        content_type: 2,
-        content: ""
+        op_type: 2,
+        content_type: 1,
+        content: "",
       }
     }
   },
@@ -71,7 +72,8 @@ export default {
     },
     successCB(response) {
       sendSocketMessage({
-        content_type: 3,
+        op_type: 2,
+        content_type: 2,
         content: response.data
       })
     },
